@@ -1,0 +1,9 @@
+vendor/
+_*
+*.test
+.DS_Store
+/tmp
+/main
+*.pem
+*.key
+key.json
