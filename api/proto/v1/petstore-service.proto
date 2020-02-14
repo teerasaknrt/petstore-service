@@ -1,0 +1,111 @@
+syntax = "proto3";
+
+package v1;
+
+import "google/api/annotations.proto";
+import "protoc-gen-swagger/options/annotations.proto";
+
+option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
+	info: {
+		title: "PetStore Service";
+		version: "1.0";
+		contact: {
+			name: "go-grpc-gateway-tutoria project";
+			url: "https://github.com/teerasaknrt/go-grpc-gateway-tutorial";
+			email: "teerasak.n@existing.co";
+        };
+    };
+    schemes: HTTP;
+    consumes: "application/json";
+    produces: "application/json";
+    responses: {
+		key: "404";
+		value: {
+			description: "Returned when the resource does not exist.";
+			schema: {
+				json_schema: {
+					type: STRING;
+				}
+			}
+		}
+	}
+};
+
+message Data{
+    string id = 1;
+    Category category = 2;
+    string name = 3;
+    string photoUrls = 4;
+    string tags = 5;
+    string status = 6;
+    bool isDelete = 7;
+}
+
+message Category{
+    int32 id = 1;
+    string name = 2;
+}
+
+message CreateRequest{
+    string api = 1;
+    Data data = 2;
+}
+
+message CreateResponse{
+    string api = 1;
+    string message = 2;
+}
+
+message UpdateRequest{
+    string api = 1;
+    Data data = 2;
+}
+
+message UpdateResponse{
+    string api = 1;
+    string message = 2;
+}
+message FindRequest{
+    string api = 1;
+    string id = 2;
+}
+
+message FindResponse{
+    string api = 1;
+    Data data = 2;
+}
+
+message DeletesRequest{
+    string api = 1;
+    string id = 2;
+}
+
+message DeletesResponse{
+    string api = 1;
+    string message = 2;
+}
+
+service PetStoreService {
+    rpc Create(CreateRequest) returns (CreateResponse){
+        option (google.api.http) = {
+            post: "/api/v1/pet"
+            body: "*"
+        };
+    }
+    rpc Update(UpdateRequest) returns (UpdateResponse){
+        option (google.api.http) = {
+            put: "/api/v1/pet"
+            body: "*"
+        };
+    }
+    rpc Find(FindRequest) returns (FindResponse){
+        option (google.api.http) = {
+            get: "/api/v1/pet/{id}"
+        };
+    }
+    rpc Deletes(DeletesRequest) returns (DeletesResponse){
+        option (google.api.http) = {
+            delete: "/api/v1/pet/{id}"
+        };
+    }
+}
