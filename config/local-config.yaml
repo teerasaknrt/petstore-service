@@ -1,0 +1,6 @@
+debug: true
+env: local
+grpcport: 9090
+httpport: 8080
+firestore:
+  url: ./cert/firestore/key.json

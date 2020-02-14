@@ -1,0 +1,6 @@
+debug: APP_DEBUG
+env: APP_ENV
+grcport: APP_GRPC_PORT
+httpport: APP_HTTP_PORT
+firestore:
+  url: APP_FIRESTORE_URL
