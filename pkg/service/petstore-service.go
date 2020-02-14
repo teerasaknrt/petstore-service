@@ -75,7 +75,7 @@ func (s *petStoreServiceServer) Update(ctx context.Context, req *v1.UpdateReques
 	s.checkAPI(req.Api)
 	states := s.db.Collection("petstore")
 	ny := states.Doc(req.Data.Id)
-	_, err := ny.Update(ctx, []firestore.Update{{Path: "Status", Value: "OutStock"}})
+	_, err := ny.Update(ctx, []firestore.Update{{Path: "Status", Value: req.Data.Status}})
 	if err != nil {
 		log.Println("cannot update petsore")
 		return nil, err
