@@ -21,4 +21,4 @@ jobs:
         go mod vendor
 
     - name: Build
-      run: go build -v .
+      run: go build -v ./cmd/server/main.go
